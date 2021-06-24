@@ -1,0 +1,6 @@
+{
+	['Default'] = 'table_def',
+	['Custom Skins'] = 'table_cus',
+	['All'] = 'table_all',
+  ['Weeb'] = {{'AK47_Weeb'},{'DesertEagle_02'},{'AWP_Megumin'},{'USP_Neo-Noir'},{'DesertEagle_Megumin'},{'AWP_Weeb'},{'DesertEagle_Weeb'},{'Sports Glove_Weeb'},{'M4A4_Megumin'},{'Scout_Megumin'},{'AK47_Kanata Wing'},{'AWP_Korone'},{'P2000_Korone Skies'},{'M4A1_02'},{'AWP_Erio/Leum'},{'AWP_Megumin V2'},{'M4A4_Weeb'},{'DesertEagle_Weeb V2'}}
+}
