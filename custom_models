@@ -1,0 +1,21 @@
+{{
+        weaponname = "Megu",
+        modelname = "Bayonet",
+        model = game:GetObjects("rbxassetid://6665205316")[1]
+},{
+        weaponname = "Pillow Megumin",
+        modelname = "T Knife",
+        model = game:GetObjects("rbxassetid://6600638487")[1]
+},{
+        weaponname = "Kana",
+        modelname = "CT Knife",
+        model = game:GetObjects("rbxassetid://6726779537")[1]
+},{
+	weaponname = "Fists",
+	modelname = "Bayonet",
+	model = game:GetObjects("rbxassetid://6565942414")[1]
+},{
+	weaponname = "Burger",
+	modelname = "Bayonet",
+	model = game:GetObjects("rbxassetid://6557148153")[1]
+}}
