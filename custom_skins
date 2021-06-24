@@ -155,3 +155,17 @@
             ["Back"] = "http://www.roblox.com/asset/?id=6890512409",
             ["Front"] = "http://www.roblox.com/asset/?id=6890512409"
         }
+},{
+       weaponname = "Glock",
+       skinname = "Grassland",
+       skinimage = "http://www.roblox.com/asset/?id=0",
+       skinrarity = "Red",
+       model = {
+            ["Slide"] = "http://www.roblox.com/asset/?id=6687515810",
+            ["Slide2"] = "http://www.roblox.com/asset/?id=6687515810",
+            ["Mag"] = "http://www.roblox.com/asset/?id=6687515271",
+            ["Mag3"] = "http://www.roblox.com/asset/?id=6687515271",
+            ["Handle"] = "http://www.roblox.com/asset/?id=6687515271",
+            ["Handle2"] = "http://www.roblox.com/asset/?id=6687515271"
+        }
+}}
