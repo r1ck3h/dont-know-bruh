@@ -156,16 +156,16 @@ local library = {
     pointers = {},
     settings = {
         guiname = "Hexagon",
-		title = "Hexagon",
+		title = "OK",
 		logo = "rbxassetid://846369508", -- "http://www.roblox.com/asset/?id=1503300065",
-        footer = "dont know what to do",
+        footer = "lol got u",
         modal = true,
         font = Enum.Font.SourceSans,
         textsize = 16,
         textstroke = true
     },
     theme = {
-        buttons = Color3.fromRGB(0, 169, 107), -- toggle, sliders colors
+        buttons = Color3.fromRGB(255, 211, 0), -- toggle, sliders colors
         text = Color3.fromRGB(255, 255, 255),
         textboxtext = Color3.fromRGB(145, 145, 145),
         main = Color3.fromRGB(30, 30, 30),
