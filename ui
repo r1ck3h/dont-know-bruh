@@ -165,7 +165,7 @@ local library = {
         textstroke = true
     },
     theme = {
-        buttons = Color3.fromRGB(150, 0, 0), -- toggle, sliders colors
+        buttons = Color3.fromRGB(0, 169, 107), -- toggle, sliders colors
         text = Color3.fromRGB(255, 255, 255),
         textboxtext = Color3.fromRGB(145, 145, 145),
         main = Color3.fromRGB(30, 30, 30),
