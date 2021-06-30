@@ -33,7 +33,7 @@ local function PlayerAdded(Player)
            if PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 or PrimaryPart.AssemblyLinearVelocity.Magnitude > 100 then
                if Detected == false then
                    game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                       Text = "skid detected" .. tostring(Player);
+                       Text = "skid detected: " .. tostring(Player);
                        Color = Color3.fromRGB(0, 0, 0);
                    })
                end
