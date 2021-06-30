@@ -33,8 +33,8 @@ local function PlayerAdded(Player)
            if PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 or PrimaryPart.AssemblyLinearVelocity.Magnitude > 100 then
                if Detected == false then
                    game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                       Text = "Fling Exploit detected, Player: " .. tostring(Player);
-                       Color = Color3.fromRGB(255, 200, 0);
+                       Text = "" .. tostring(Player);
+                       Color = Color3.fromRGB(0, 0, 0);
                    })
                end
                Detected = true
@@ -74,7 +74,7 @@ Services.RunService.Heartbeat:Connect(function()
 
            game.StarterGui:SetCore("ChatMakeSystemMessage", {
                Text = "You were flung. Neutralizing velocity.";
-               Color = Color3.fromRGB(255, 0, 0);
+               Color = Color3.fromRGB(0, 0, 0);
            })
        elseif PrimaryPart.AssemblyLinearVelocity.Magnitude < 50 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 then
            LastPosition = PrimaryPart.CFrame
