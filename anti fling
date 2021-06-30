@@ -73,7 +73,7 @@ Services.RunService.Heartbeat:Connect(function()
            PrimaryPart.CFrame = LastPosition
 
            game.StarterGui:SetCore("ChatMakeSystemMessage", {
-               Text = "skid flinged u";
+               Text = "skid flinged u.";
                Color = Color3.fromRGB(0, 0, 0);
            })
        elseif PrimaryPart.AssemblyLinearVelocity.Magnitude < 50 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 then
