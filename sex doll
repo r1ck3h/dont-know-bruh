@@ -1,4 +1,4 @@
-    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
 if v:IsA("Accessory") then
 print(v)
 end
