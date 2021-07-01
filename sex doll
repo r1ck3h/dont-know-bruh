@@ -523,4 +523,3 @@ game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(KeyPressed)
         end
     end
 end)
-end)
