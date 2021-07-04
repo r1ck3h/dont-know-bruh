@@ -1,0 +1,162 @@
+pcall(function()
+    local player = game:GetService("Players").LocalPlayer.Character
+    if player.EquippedTool.Value == "AK47" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "M4A1" then
+        player.Gun.Shoot.SoundId:Destroy()
+
+    end
+
+    if player.EquippedTool.Value == "Glock" then
+        player.Gun.Shoot.SoundId:Destroy()
+
+    end
+
+    if player.EquippedTool.Value == "M4A1" then
+        player.Gun.Shoot.SoundId:Destroy()
+
+    end
+
+    if player.EquippedTool.Value == "Galil" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "USP" then
+        player.Gun.SShoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "USP" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "DualBerettas" then 
+        player.Gun1.Shoot.SoundId:Destroy()
+        player.Gun2.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "P250" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "DesertEagle" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "M249" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "MP9" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "MP7-SD" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "UMP" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "P90" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "Bizon" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "Famas" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "Scout" then
+        player.Gun.Shoot.SoundId:Destroy()
+        player.Gun.Zoom.SoundId:Destroy()
+        player.Gun.Zoom.PlaybackSpeed = 1
+    end
+
+    if player.EquippedTool.Value == "AUG" then
+        player.Gun.Shoot.SoundId:Destroy()
+        player.Gun.Zoom.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "AWP" then
+        player.Gun.Shoot.SoundId:Destroy()
+        player.Gun.Zoom.SoundId:Destroy()
+        player.Gun.Zoom.PlaybackSpeed = 1
+    end
+
+    if player.EquippedTool.Value == "G3SG1" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "MAC10" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "SawedOff" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "CZ" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "Nova" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "XM" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "MAG7" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "Negev" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "SG" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "T Knife" then
+        player.Gun.Shoot.SoundId:Destroy()
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "CT Knife" then
+        player.Gun.Shoot.SoundId:Destroy()
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "M4A4" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "FiveSevenMoment" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "FiveSeven" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+
+    if player.EquippedTool.Value == "Tec9" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+    
+    if player.EquippedTool.Value == "P2000" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+    
+    if player.EquippedTool.Value == "MP7" then
+        player.Gun.Shoot.SoundId:Destroy()
+    end
+end)
+end
