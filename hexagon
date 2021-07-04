@@ -974,21 +974,6 @@ MiscellaneousTabCategoryMain:AddDropdown("Waypoints Teleport", {"Spawn T", "Spaw
 	end
 end)
 
-MiscellaneousTabCategoryMain:AddDropdown("Places Teleport", {"Casual", "Competitive", "Deathmatch", "Trading"}, "-", "MiscellaneousTabCategoryMainPlacesTeleport", function(val)
-	if val == "Casual" then
-		game:GetService("TeleportService"):Teleport(301549746, LocalPlayer)
-		library.pointers.MiscellaneousTabCategoryMainPlacesTeleport:Set("-")
-	elseif val == "Competitive" then
-		game:GetService("TeleportService"):Teleport(1480424328, LocalPlayer)
-		library.pointers.MiscellaneousTabCategoryMainPlacesTeleport:Set("-")
-	elseif val == "Deathmatch" then
-		game:GetService("TeleportService"):Teleport(1869597719, LocalPlayer)
-		library.pointers.MiscellaneousTabCategoryMainPlacesTeleport:Set("-")
-	elseif val == "Trading" then
-		game:GetService("TeleportService"):Teleport(5325113759, LocalPlayer)
-		library.pointers.MiscellaneousTabCategoryMainPlacesTeleport:Set("-")
-	end
-end)
 
 MiscellaneousTabCategoryMain:AddDropdown("Barriers", {"Normal", "Visible", "Remove"}, "-", "MiscellaneousTabCategoryMainBarriers", function(val)
 	pcall(function()
@@ -1288,61 +1273,6 @@ end)
 MiscellaneousTabCategoryMain:AddTextBox("Hit Sound", "", "MiscellaneousTabCategoryMainHitSound")
 
 MiscellaneousTabCategoryMain:AddTextBox("Kill Sound", "", "MiscellaneousTabCategoryMainKillSound")
-
-local MiscellaneousTabCategoryNoclip = MiscellaneousTab:AddCategory("Noclip", 1)
-
-MiscellaneousTabCategoryNoclip:AddToggle("Enabled", false, "MiscellaneousTabCategoryNoclipEnabled", function(val)
-	if val == true then
-		FlyLoop = game:GetService("RunService").Stepped:Connect(function()
-			if IsAlive(LocalPlayer) then
-				spawn(function()
-					pcall(function()
-						local speed = library.pointers.MiscellaneousTabCategoryNoclipSpeed.value
-						local velocity = Vector3.new(0, 1, 0)
-						
-						if UserInputService:IsKeyDown(Enum.KeyCode.W) then
-							velocity = velocity + (workspace.CurrentCamera.CoordinateFrame.lookVector * speed)
-						end
-						if UserInputService:IsKeyDown(Enum.KeyCode.A) then
-							velocity = velocity + (workspace.CurrentCamera.CoordinateFrame.rightVector * -speed)
-						end
-						if UserInputService:IsKeyDown(Enum.KeyCode.S) then
-							velocity = velocity + (workspace.CurrentCamera.CoordinateFrame.lookVector * -speed)
-						end
-						if UserInputService:IsKeyDown(Enum.KeyCode.D) then
-							velocity = velocity + (workspace.CurrentCamera.CoordinateFrame.rightVector * speed)
-						end
-						
-						LocalPlayer.Character.HumanoidRootPart.Velocity = velocity
-						LocalPlayer.Character.Humanoid.PlatformStand = true
-					end)
-				end)
-			end
-		end)
-		
-		NoclipLoop = game:GetService("RunService").Stepped:Connect(function()
-			for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-				if v:IsA("BasePart") and v.CanCollide == true then
-					v.CanCollide = false
-				end
-			end
-		end)
-	elseif val == false and FlyLoop and NoclipLoop then
-		pcall(function()
-			FlyLoop:Disconnect()
-			NoclipLoop:Disconnect()
-			LocalPlayer.Character.Humanoid.PlatformStand = false
-		end)
-	end
-end)
-
-MiscellaneousTabCategoryNoclip:AddKeybind("Keybind", nil, "MiscellaneousTabCategoryNoclipKeybind", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then
-		library.pointers.MiscellaneousTabCategoryNoclipEnabled:Set(not library.pointers.MiscellaneousTabCategoryNoclipEnabled.value)
-	end
-end)
-
-MiscellaneousTabCategoryNoclip:AddSlider("Speed", {0, 100, 16, 1, ""}, "MiscellaneousTabCategoryNoclipSpeed")
 
 local MiscellaneousTabCategoryGunMods = MiscellaneousTab:AddCategory("Gun Mods", 2)
 
