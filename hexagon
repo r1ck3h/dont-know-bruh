@@ -1460,7 +1460,7 @@ SettingsTabCategoryMain:AddButton("Game Closer lol", function()
 end)
 
 SettingsTabCategoryMain:AddButton("Copy Discord Invite", function()
-	setclipboard("https://discord.gg/47YH2Ay")
+	setclipboard("https://discord.gg/6aDxwcF3")
 end)
 
 SettingsTabCategoryMain:AddButton("Fix Vote Bug", function()
