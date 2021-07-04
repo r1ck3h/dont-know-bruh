@@ -1,29 +1,10 @@
--- ligma
-_G.EdgebugEnabled = true
-_G.ZaraptKEY = Enum.KeyCode.E
-
-local isEdgebugging = false
-local selfUIS = game:GetService("UserInputService")
-
-selfUIS.InputBegan:Connect(function(key)
-	if key.KeyCode == _G.ZaraptKEY then
-		isEdgebugging = true
-	end
-end)
-
-selfUIS.InputEnded:Connect(function(key)
-	if key.KeyCode == _G.ZaraptKEY then
-		isEdgebugging = false
-	end
-end)
-
 local Hint = Instance.new("Hint", game.CoreGui)
-Hint.Text = "OK | Waiting for the game to load..."
+Hint.Text = "Hexagon | Waiting for the game to load..."
 
 repeat wait() until game:IsLoaded()
 repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("GUI")
 
-Hint.Text = "OK | Setting up environment..."
+Hint.Text = "Hexagon | Setting up environment..."
 
 -- Services
 local UserInputService = game:GetService("UserInputService")
@@ -44,7 +25,7 @@ if (getsenv == false) then return game.Players.LocalPlayer:Kick("Exploit not sup
 if (listfiles == false) then return game.Players.LocalPlayer:Kick("Exploit not supported! Missing: listfiles.") end
 if (isfolder == false) then return game.Players.LocalPlayer:Kick("Exploit not supported! Missing: isfolder.") end
 
-Hint.Text = "OK | Setting up configuration settings..."
+Hint.Text = "Hexagon | Setting up configuration settings..."
 
 if not isfolder("hexagon") then
 	print("creating hexagon folder")
@@ -81,7 +62,7 @@ if not isfile("hexagon/skyboxes.txt") then
 	writefile("hexagon/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/skyboxes.txt"))
 end
 
-Hint.Text = "OK | Loading..."
+Hint.Text = "Hexagon | Loading..."
 
 -- Viewmodels fix
 for i,v in pairs(game.ReplicatedStorage.Viewmodels:GetChildren()) do
@@ -185,14 +166,6 @@ local function GetTeam(plr)
 	return game.Teams[plr.Team.Name]
 end
 
-local function GetSite()
-	if (LocalPlayer.Character.HumanoidRootPart.Position - workspace.Map.SpawnPoints.C4Plant.Position).magnitude > (LocalPlayer.Character.HumanoidRootPart.Position - workspace.Map.SpawnPoints.C4Plant2.Position).magnitude then
-		return "A"
-	else
-		return "B"
-	end
-end
-
 local function CharacterAdded()
 	wait(0.5)
 	if IsAlive(LocalPlayer) then
@@ -216,50 +189,6 @@ local function PlayerAdded()
 	
 end
 
-local function PlantC4()
-	pcall(function()
-	if IsAlive(LocalPlayer) and workspace.Map.Gamemode.Value == "defusal" and workspace.Status.Preparation.Value == false and not planting then 
-		planting = true
-		local pos = LocalPlayer.Character.HumanoidRootPart.CFrame 
-		workspace.CurrentCamera.CameraType = "Fixed"
-		LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Map.SpawnPoints.C4Plant.CFrame
-		wait(0.2)
-		game.ReplicatedStorage.Events.PlantC4:FireServer((pos + Vector3.new(0, -2.75, 0)) * CFrame.Angles(math.rad(90), 0, math.rad(180)), GetSite())
-		wait(0.2)
-		LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-		LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		game.Workspace.CurrentCamera.CameraType = "Custom"
-		planting = false
-	end
-	end)
-end
-
-local function DefuseC4()
-	pcall(function()
-	if IsAlive(LocalPlayer) and workspace.Map.Gamemode.Value == "defusal" and not defusing and workspace:FindFirstChild("C4") then 
-		defusing = true
-		LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		local pos = LocalPlayer.Character.HumanoidRootPart.CFrame 
-		workspace.CurrentCamera.CameraType = "Fixed"
-		LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.C4.Handle.CFrame + Vector3.new(0, 2, 0)
-		LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		wait(0.1)
-		LocalPlayer.Backpack.PressDefuse:FireServer(workspace.C4)
-		LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		wait(0.25)
-		if IsAlive(LocalPlayer) and workspace:FindFirstChild("C4") and workspace.C4:FindFirstChild("Defusing") and workspace.C4.Defusing.Value == LocalPlayer then
-			LocalPlayer.Backpack.Defuse:FireServer(workspace.C4)
-		end
-		LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		wait(0.2)
-		LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-		LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
-		game.Workspace.CurrentCamera.CameraType = "Custom"
-		defusing = false
-	end
-	end)
-end
 
 function GetSpectators()
 	local CurrentSpectators = {}
@@ -757,6 +686,116 @@ VisualsTabCategoryOthers:AddDropdown("Skybox", TableToNames(Skyboxes), "Default"
 end)
 
 VisualsTabCategoryOthers:AddToggle("Force Crosshair", false, "VisualsTabCategoryOthersForceCrosshair")
+
+VisualsTabCategoryOthers:AddToggle("Velocity Graph", false, "VisualsTabCategoryOthersVelocityGraph", function(val)
+    if val == true then
+        local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+local CurrentCamera = workspace.CurrentCamera
+
+local graphLines = {}
+local standardY = workspace.CurrentCamera.ViewportSize.Y-100
+local oldY = standardY
+local oldVelo = 0
+
+local VelocityCounter = Drawing.new("Text")
+VelocityCounter.Text = ""
+VelocityCounter.Center = true
+VelocityCounter.Outline = true
+VelocityCounter.Color = Color3.new(1,1,1)
+VelocityCounter.Font = 3
+VelocityCounter.Position = Vector2.new(CurrentCamera.ViewportSize.X/2, CurrentCamera.ViewportSize.Y-90)
+VelocityCounter.Size = 20
+VelocityCounter.Visible = true
+
+while true do
+	RunService.RenderStepped:Wait()
+
+	standardY = CurrentCamera.ViewportSize.Y-100
+	VelocityCounter.Position = Vector2.new(CurrentCamera.ViewportSize.X/2,CurrentCamera.ViewportSize.Y-90)
+
+	if LocalPlayer.Character and LocalPlayer.Character.PrimaryPart then
+		if #graphLines >= 1 then
+			local max = 100
+			
+			if #graphLines >= max then
+				graphLines[1]:Remove()
+				
+				local counter = 0
+
+				for i=2,6 do
+					counter = counter + 1.8
+					graphLines[i].Transparency = 1 - (counter/10)
+				end
+				
+				graphLines[2].Transparency = 0.1
+				graphLines[3].Transparency = 0.2
+				graphLines[4].Transparency = 0.4
+				graphLines[5].Transparency = 0.6
+				graphLines[6].Transparency = 0.8
+				
+				table.remove(graphLines, 1)
+			end
+			
+			for i,v in pairs(graphLines) do
+				v.To = v.To - Vector2.new(2,0)
+				v.From = v.From - Vector2.new(2,0)
+			end
+		end
+		
+		local totalVelo = (LocalPlayer.Character.PrimaryPart.Velocity * Vector3.new(1, 0, 1)).magnitude
+		local graphVelocity = totalVelo * 14.85
+		--[[
+		if graphVelocity > 300 then
+			graphVelocity = 300
+		end
+		--]]
+		VelocityCounter.Color = Color3.new(255,255,255)
+		
+		if math.floor(totalVelo) < oldVelo then
+			VelocityCounter.Color = Color3.new(255,255,255)
+		end
+		
+		if math.floor(totalVelo) > oldVelo then
+			VelocityCounter.Color = Color3.new(255,255,255)
+		end
+		--[[
+		if math.floor(graphVelocity) == 300 then
+			VelocityCounter.Color = Color3.new(255,255,255)
+		end
+		--]]
+		local color = Color3.new(19, 119, 255)
+		
+		--color = Color3.fromHSV(tick()%5/5,1,1)
+
+		local line = Drawing.new("Line")
+		
+		table.insert(graphLines, line)
+		
+		line.Color = color
+		line.Thickness = 2
+		line.From = Vector2.new(CurrentCamera.ViewportSize.X/2 + 98, oldY)
+		line.To = Vector2.new(CurrentCamera.ViewportSize.X/2 + 100, standardY - (graphVelocity/6.5))
+		line.Transparency = 0
+		line.Visible = true
+		
+		if #graphLines >= 8 then
+			graphLines[#graphLines-1].Transparency = graphLines[#graphLines-1].Transparency + 0.2
+			graphLines[#graphLines-2].Transparency = graphLines[#graphLines-2].Transparency + 0.2
+			graphLines[#graphLines-3].Transparency = graphLines[#graphLines-3].Transparency + 0.2
+			graphLines[#graphLines-4].Transparency = graphLines[#graphLines-4].Transparency + 0.2
+			graphLines[#graphLines-5].Transparency = graphLines[#graphLines-5].Transparency + 0.2
+			graphLines[#graphLines-7].Transparency = 1
+		end
+		
+		VelocityCounter.Text = tostring(math.floor(graphVelocity))
+		oldY = standardY - (graphVelocity/6.5)
+		oldVelo = math.floor(totalVelo)
+	end
+end
+end
+end)
 
 VisualsTabCategoryOthers:AddToggle("Old Music", false, "VisualsTabCategoryOthersOldMusic", function(val)
 	if val == true then
@@ -1490,120 +1529,6 @@ MiscellaneousTabCategoryKeybinds:AddKeybind("Jump Bug", nil, "MiscellaneousTabCa
 	JumpBug = val
 end)
 
-MiscellaneousTabCategoryKeybinds:AddKeybind("Teleport", nil, "MiscellaneousTabCategoryKeybindsTeleport", function(val)
-	if val == true and IsAlive(LocalPlayer) and UserInputService:GetFocusedTextBox() == nil and Mouse.Target ~= nil then
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Mouse.Hit.p + Vector3.new(0, 2.5, 0))
-	end
-end)
-MiscellaneousTabCategoryKeybinds:AddToggle("Velocity Graph", false, "MiscellaneousTabCategoryMemeStuff", function(val)
-    if val == true then
-        local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local LocalPlayer = Players.LocalPlayer
-local CurrentCamera = workspace.CurrentCamera
-
-local graphLines = {}
-local standardY = workspace.CurrentCamera.ViewportSize.Y-100
-local oldY = standardY
-local oldVelo = 0
-
-local VelocityCounter = Drawing.new("Text")
-VelocityCounter.Text = ""
-VelocityCounter.Center = true
-VelocityCounter.Outline = true
-VelocityCounter.Color = Color3.new(1,1,1)
-VelocityCounter.Font = 3
-VelocityCounter.Position = Vector2.new(CurrentCamera.ViewportSize.X/2, CurrentCamera.ViewportSize.Y-90)
-VelocityCounter.Size = 20
-VelocityCounter.Visible = true
-
-while true do
-	RunService.RenderStepped:Wait()
-
-	standardY = CurrentCamera.ViewportSize.Y-100
-	VelocityCounter.Position = Vector2.new(CurrentCamera.ViewportSize.X/2,CurrentCamera.ViewportSize.Y-90)
-
-	if LocalPlayer.Character and LocalPlayer.Character.PrimaryPart then
-		if #graphLines >= 1 then
-			local max = 100
-			
-			if #graphLines >= max then
-				graphLines[1]:Remove()
-				
-				local counter = 0
-
-				for i=2,6 do
-					counter = counter + 1.8
-					graphLines[i].Transparency = 1 - (counter/10)
-				end
-				
-				graphLines[2].Transparency = 0.1
-				graphLines[3].Transparency = 0.2
-				graphLines[4].Transparency = 0.4
-				graphLines[5].Transparency = 0.6
-				graphLines[6].Transparency = 0.8
-				
-				table.remove(graphLines, 1)
-			end
-			
-			for i,v in pairs(graphLines) do
-				v.To = v.To - Vector2.new(2,0)
-				v.From = v.From - Vector2.new(2,0)
-			end
-		end
-		
-		local totalVelo = (LocalPlayer.Character.PrimaryPart.Velocity * Vector3.new(1, 0, 1)).magnitude
-		local graphVelocity = totalVelo * 14.85
-		--[[
-		if graphVelocity > 300 then
-			graphVelocity = 300
-		end
-		--]]
-		VelocityCounter.Color = Color3.new(255,255,255)
-		
-		if math.floor(totalVelo) < oldVelo then
-			VelocityCounter.Color = Color3.new(255,255,255)
-		end
-		
-		if math.floor(totalVelo) > oldVelo then
-			VelocityCounter.Color = Color3.new(255,255,255)
-		end
-		--[[
-		if math.floor(graphVelocity) == 300 then
-			VelocityCounter.Color = Color3.new(255,255,255)
-		end
-		--]]
-		local color = Color3.new(19, 119, 255)
-		
-		--color = Color3.fromHSV(tick()%5/5,1,1)
-
-		local line = Drawing.new("Line")
-		
-		table.insert(graphLines, line)
-		
-		line.Color = color
-		line.Thickness = 2
-		line.From = Vector2.new(CurrentCamera.ViewportSize.X/2 + 98, oldY)
-		line.To = Vector2.new(CurrentCamera.ViewportSize.X/2 + 100, standardY - (graphVelocity/6.5))
-		line.Transparency = 0
-		line.Visible = true
-		
-		if #graphLines >= 8 then
-			graphLines[#graphLines-1].Transparency = graphLines[#graphLines-1].Transparency + 0.2
-			graphLines[#graphLines-2].Transparency = graphLines[#graphLines-2].Transparency + 0.2
-			graphLines[#graphLines-3].Transparency = graphLines[#graphLines-3].Transparency + 0.2
-			graphLines[#graphLines-4].Transparency = graphLines[#graphLines-4].Transparency + 0.2
-			graphLines[#graphLines-5].Transparency = graphLines[#graphLines-5].Transparency + 0.2
-			graphLines[#graphLines-7].Transparency = 1
-		end
-		
-		VelocityCounter.Text = tostring(math.floor(graphVelocity))
-		oldY = standardY - (graphVelocity/6.5)
-		oldVelo = math.floor(totalVelo)
-	end
-end
-end
-end)
 
 
 
@@ -1625,62 +1550,12 @@ SettingsTabCategoryMain:AddButton("Copy Discord Invite", function()
 	setclipboard("https://discord.gg/47YH2Ay")
 end)
 
-SettingsTabCategoryMain:AddButton("Copy Roblox Game Invite", function()
-	setclipboard("Roblox.GameLauncher.joinGameInstance("..game.PlaceId..", '"..game.JobId.."')")
-end)
-
 SettingsTabCategoryMain:AddButton("Fix Vote Bug", function()
     LocalPlayer.PlayerGui.GUI.MapVote.Visible = false
 	LocalPlayer.PlayerGui.GUI.Scoreboard.Visible = false
 end)
 
-SettingsTabCategoryMain:AddTextBox("Clantag", "", "SettingsTabCategoryMainClantag", function(val, focus)
-	if val == "" then
-		game.Players.LocalPlayer.OsPlatform = oldOsPlatform
-	else
-		while library.pointers.SettingsTabCategoryMainClantag.value == val do
-			for i=1,#val do
-				game.Players.LocalPlayer.OsPlatform = "|"..val:sub(1,i)
-				wait(0.25)
-			end
-			wait(1)
-			for i=1,4 do
-				game.Players.LocalPlayer.OsPlatform = "|"..val
-				wait(0.15)
-				game.Players.LocalPlayer.OsPlatform = "|"..string.rep("*", #val)
-				wait(0.15)
-			end
-			wait(0.5)
-			game.Players.LocalPlayer.OsPlatform = "|"
-			wait(0.5)
-		end
-	end
-end)
 
-local SettingsTabCategoryPlayers = SettingsTab:AddCategory("Players", 1)
-
-SettingsTabCategoryPlayers:AddTextBox("Username", "", "SettingsTabCategoryPlayersUsername", function(val, focus)
-	if game.Players:FindFirstChild(val) then
-		local plr = game.Players:FindFirstChild(val)
-		
-		while game.Players:FindFirstChild(library.pointers.SettingsTabCategoryPlayersUsername.value) do
-			wait(0.1)
-			library.pointers.SettingsTabCategoryPlayersAge:Set("Age: "..plr.AccountAge.." days")
-			library.pointers.SettingsTabCategoryPlayersAlive:Set("Alive: "..(IsAlive(plr) and "yes" or "no"))
-			library.pointers.SettingsTabCategoryPlayersTeam:Set("Team: "..GetTeam(plr).Name)
-		end
-		
-		library.pointers.SettingsTabCategoryPlayersAge:Set("Age: ")
-		library.pointers.SettingsTabCategoryPlayersAlive:Set("Alive: ")
-		library.pointers.SettingsTabCategoryPlayersTeam:Set("Team: ")
-	end
-end)
-
-SettingsTabCategoryPlayers:AddLabel("Age: ", "SettingsTabCategoryPlayersAge")
-
-SettingsTabCategoryPlayers:AddLabel("Alive: ", "SettingsTabCategoryPlayersAlive")
-
-SettingsTabCategoryPlayers:AddLabel("Team: ", "SettingsTabCategoryPlayersTeam")
 
 local SettingsTabCategoryConfigs = SettingsTab:AddCategory("Configs", 2)
 
@@ -1727,29 +1602,6 @@ SettingsTabCategoryConfigs:AddButton("Set as default", function()
 		writefile("hexagon/autoload.txt", "")
 	end
 end)
-
-local SettingsTabCategoryCredits = SettingsTab:AddCategory("Credits", 2)
-
-SettingsTabCategoryCredits:AddLabel("Script - Pawel12d#0272")
-
-SettingsTabCategoryCredits:AddLabel("ESP - Modified Kiriot ESP")
-
-SettingsTabCategoryCredits:AddLabel("UI Library - Modified Phantom Ware")
-
-SettingsTabCategoryCredits:AddLabel("")
-
-SettingsTabCategoryCredits:AddLabel("Special Thanks To:")
-
-SettingsTabCategoryCredits:AddLabel("ny#2817")
-
-SettingsTabCategoryCredits:AddLabel("neeX#3712")
-
-SettingsTabCategoryCredits:AddLabel("MrPolaczekPL#1884")
-
-SettingsTabCategoryCredits:AddLabel("")
-
-SettingsTabCategoryCredits:AddLabel("Don't steal credits or burn in hell.")
-
 
 
 -- Other
@@ -2071,7 +1923,7 @@ Mouse.Move:Connect(function()
 	end
 end)
 
-Hint.Text = "OK | Setting up hooks..."
+Hint.Text = "Hexagon | Setting up hooks..."
 
 hookfunc(getrenv().xpcall, function() end)
 
@@ -2107,13 +1959,6 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 				if angle then
 					args[1] = angle
 				end
-			elseif string.len(self.Name) == 38 then
-				return wait(99e99)
-			elseif self.Name == "ApplyGun" and args[1] == game.ReplicatedStorage.Weapons.Banana or args[1] == game.ReplicatedStorage.Weapons["Flip Knife"] then
-				args[1] = game.ReplicatedStorage.Weapons.Karambit
-			elseif self.Name == "HitPart" then
-				args[8] = args[8] * library.pointers.MiscellaneousTabCategoryGunModsDamageMultiplier.value
-
 				if library.pointers.VisualsTabCategoryOthersBulletTracers.value == true then
 					spawn(function()
 						local BulletTracers = Instance.new("Part")
@@ -2151,12 +1996,6 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 						args[1] = args[1].PlayerName.Value.Character.Head
 					end
 				end
-			elseif self.Name == "test" then
-				return wait(99e99)
-			elseif self.Name == "FallDamage" and (library.pointers.MiscellaneousTabCategoryMainNoFallDamage.value == true or JumpBug == true) then
-				return
-			elseif self.Name == "BURNME" and library.pointers.MiscellaneousTabCategoryMainNoFireDamage.value == true then
-				return
 			elseif self.Name == "DataEvent" and args[1][1] == "EquipItem" then
 				local Weapon,Skin = args[1][3], string.split(args[1][4][1], "_")[2]
 				local EquipTeams = (args[1][2] == "Both" and {"T", "CT"}) or {args[1][2]}
@@ -2212,9 +2051,6 @@ oldNewIndex = hookfunc(getrawmetatable(game.Players.LocalPlayer.PlayerGui.Client
 	if not checkcaller() then
 		if self.Name == "Humanoid" and idx == "WalkSpeed" and val ~= 0 and isBhopping == true then 
 			val = curVel
-		elseif self.Name == "Humanoid" and idx == "JumpPower" and val ~= 0 and JumpBug == true then
-			spawn(function() cbClient.UnCrouch() end)
-			val = val * 1.25
 		elseif self.Name == "Crosshair" and idx == "Visible" and val == false and LocalPlayer.PlayerGui.GUI.Crosshairs.Scope.Visible == false and library.pointers.VisualsTabCategoryOthersForceCrosshair.value == true then
 			val = true
 		end
@@ -2223,39 +2059,6 @@ oldNewIndex = hookfunc(getrawmetatable(game.Players.LocalPlayer.PlayerGui.Client
     return oldNewIndex(self, idx, val)
 end))
 
-oldIndex = hookfunc(getrawmetatable(game.Players.LocalPlayer.PlayerGui.Client).__index, newcclosure(function(self, idx)
-	if idx == "Value" then
-		if self.Name == "Auto" and library.pointers.MiscellaneousTabCategoryGunModsFullAuto.value == true then
-			return true
-		elseif self.Name == "FireRate" and library.pointers.MiscellaneousTabCategoryGunModsRapidFire.value == true then
-			return 0.001
-		elseif self.Name == "ReloadTime" and library.pointers.MiscellaneousTabCategoryGunModsInstantReload.value == true then
-			return 0.001
-		elseif self.Name == "EquipTime" and library.pointers.MiscellaneousTabCategoryGunModsInstantEquip.value == true then
-			return 0.001
-		elseif self.Name == "Penetration" and library.pointers.MiscellaneousTabCategoryGunModsInfinitePenetration.value == true then
-			return 200
-		elseif self.Name == "Range" and library.pointers.MiscellaneousTabCategoryGunModsInfiniteRange.value == true then
-			return 9999
-		elseif self.Name == "RangeModifier" and library.pointers.MiscellaneousTabCategoryGunModsInfiniteRange.value == true then
-			return 100
-		elseif (self.Name == "Spread" or self.Parent.Name == "Spread") and library.pointers.MiscellaneousTabCategoryGunModsNoSpread.value == true then
-			return 0
-		elseif (self.Name == "AccuracyDivisor" or self.Name == "AccuracyOffset") and library.pointers.MiscellaneousTabCategoryGunModsNoSpread.value == true then
-			return 0.001
-		end
-	end
-
-    return oldIndex(self, idx)
-end))
-
-getsenv(game.Players.LocalPlayer.PlayerGui.GUI.Main.Chats.DisplayChat).createNewMessage = function(plr, msg, teamcolor, msgcolor, offset, line)
-	if library.pointers.MiscellaneousTabCategoryMainNNSDontTalk.value == true and plr ~= game.Players.LocalPlayer.Name then
-		msg = "I am retarded."
-	end
-	
-	return createNewMessage(plr, msg, teamcolor, msgcolor, offset, line)
-end
 
 CharacterAdded()
 
@@ -2297,6 +2100,6 @@ end
 
 print("Hexagon finished loading!")
 
-Hint.Text = "OK | Loading finished!"
+Hint.Text = "Hexagon | Loading finished!"
 wait(1.5)
 Hint:Destroy()
