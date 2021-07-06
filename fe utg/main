@@ -1,4 +1,4 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/WetCheezit/Bracket-V2/main/src.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/WetCheezit/Bracket-V2/main/src.lua"))()
 
 -- Window
 local Window, MainGUI = Library:CreateWindow("FE UTG")
@@ -7,7 +7,7 @@ local Window, MainGUI = Library:CreateWindow("FE UTG")
 local Tab1 = Window:CreateTab("Main")
 
 local Groupbox1 = Tab1:CreateGroupbox("FE's", "Left")
-local Groupbox2 = Tab1:CreateGroupbox("Settings", "Right")
+local Groupbox2 = Tab1:CreateGroupbox("Setting's", "Right")
 
 
 -- Groupbox 1
@@ -19,7 +19,7 @@ local ExampleButton = Groupbox1:CreateButton("Among Us", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/JXUMavf3", true))()
 end)
 
-local ExamoleButton = Groupbox1:CreateButton("Neko", function()
+local ExampleButton = Groupbox1:CreateButton("Neko", function()
 loadstring(game:HttpGet("https://paste.ee/d/6bCwm/0"))()
 end)
 
@@ -35,11 +35,12 @@ local ExampleButton = Groupbox1:CreateButton("Smug", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/ZuKy7HFF"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
+local ExampleButton = Groupbox1:CreateButton("Smug", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/0QfjMKrF"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Chill", function()
+
+local ExampleButton = Groupbox1:CreateButton("Smug", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/chille%20fe"))()
 end)
 
@@ -60,7 +61,6 @@ end)
 local ExampleButton2 = Groupbox2:CreateButton("Rejoin", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/rejoin"))()
 end)
-
 
 local ExampleButton2 = Groupbox2:CreateButton("Remove Mesh", function()
     for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
@@ -203,6 +203,6 @@ local ExampleButton2 = Groupbox2:CreateButton("Anti Kill", function()
 game:GetService'Players'.LocalPlayer.Character['Right Arm']:Destroy()
 end)
 
-local ExampleButton2 = Groupbox2:CreateButton("Headless (Among Us only)", function()
+local ExampleButton2 = Groupbox2:CreateButton("Headless(Among Us only also wait 3 seconds to use this)", function()
 game:GetService'Players'.LocalPlayer.Character['Head']:Destroy()
 end)
