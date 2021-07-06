@@ -35,12 +35,12 @@ local ExampleButton = Groupbox1:CreateButton("Smug", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/ZuKy7HFF"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Smug", function()
+local ExampleButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/0QfjMKrF"))()
 end)
 
 
-local ExampleButton = Groupbox1:CreateButton("Smug", function()
+local ExampleButton = Groupbox1:CreateButton("Chill", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/chille%20fe"))()
 end)
 
