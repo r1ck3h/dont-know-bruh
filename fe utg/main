@@ -11,59 +11,60 @@ local Groupbox2 = Tab1:CreateGroupbox("Settings", "Right")
 
 
 -- Groupbox 1
-local ExampleButton = Groupbox1:CreateButton("Gale Fighter", function()
+local GaleFighterButton = Groupbox1:CreateButton("Gale Fighter", function()
 loadstring(game:HttpGet(("https://pastebin.com/raw/PjJNLaFa"), true))()
+print(
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Among Us", function()
+local SUSButton = Groupbox1:CreateButton("Among Us", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/JXUMavf3", true))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Neko", function()
+local FurryButton = Groupbox1:CreateButton("Neko", function()
 loadstring(game:HttpGet("https://paste.ee/d/6bCwm/0"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Server Admin", function()
+local ServerAdminButton = Groupbox1:CreateButton("Server Admin", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ONEReverseCard/My-Scripts/main/Netless%20Server%20Admin.md"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton(":Joy:", function()
+local JoyButton = Groupbox1:CreateButton(":Joy:", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/LEAQuKj0"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Smug", function()
+local :3Button = Groupbox1:CreateButton("Smug", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/ZuKy7HFF"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
+local UltimateMemeDanceButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/0QfjMKrF"))()
 end)
 
-local ExampleButton = Groupbox1:CreateButton("Chill", function()
+local ChillButton = Groupbox1:CreateButton("Chill", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/chille%20fe"))()
 end)
 
 -- Groupbox 2
-local ExampleButton2 = Groupbox2:CreateButton("Anti Fling", function()
+local antiskidButton2 = Groupbox2:CreateButton("Anti Fling", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/anti%20fling"))()
 end)
 
-local ExampleButton2 = Groupbox2:CreateButton("Netless", function()
+local NetlessButton2 = Groupbox2:CreateButton("Netless", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/netless"))()
 end)
 
-local ExampleButton2 = Groupbox2:CreateButton("Anti Report", function()
+local AntiReportButton2 = Groupbox2:CreateButton("Anti Report", function()
 setfflag("AbuseReportScreenshotPercentage", 0)
 setfflag("DFFlagAbuseReportScreenshot", "False")
 print("Anti-Report loaded")
 end)
 
-local ExampleButton2 = Groupbox2:CreateButton("Rejoin", function()
+local RejoinButton2 = Groupbox2:CreateButton("Rejoin", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/rejoin"))()
 end)
 
 
-local ExampleButton2 = Groupbox2:CreateButton("Remove Mesh", function()
+local RemoveMeshButton2 = Groupbox2:CreateButton("Remove Mesh", function()
     for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
         if v:IsA("Accessory") then
             if v.Handle:FindFirstChild("Mesh") then
@@ -200,10 +201,10 @@ local hash; do
 end
 
 
-local ExampleButton2 = Groupbox2:CreateButton("Anti Kill", function()
+local AntiKillButton2 = Groupbox2:CreateButton("Anti Kill", function()
 game:GetService'Players'.LocalPlayer.Character['Right Arm']:Destroy()
 end)
 
-local ExampleButton2 = Groupbox2:CreateButton("Headless (Among Us only)", function()
+local HeadlessButton2 = Groupbox2:CreateButton("Headless (Among Us only)", function()
 game:GetService'Players'.LocalPlayer.Character['Head']:Destroy()
 end)
