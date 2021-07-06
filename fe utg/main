@@ -11,35 +11,35 @@ local Groupbox2 = Tab1:CreateGroupbox("Settings", "Right")
 
 
 -- Groupbox 1
-local GaleFighterButton = Groupbox1:CreateButton("Gale Fighter", function()
+local ExampleButton = Groupbox1:CreateButton("Gale Fighter", function()
 loadstring(game:HttpGet(("https://pastebin.com/raw/PjJNLaFa"), true))()
 end)
 
-local SUSButton = Groupbox1:CreateButton("Among Us", function()
+local ExampleButton = Groupbox1:CreateButton("Among Us", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/JXUMavf3", true))()
 end)
 
-local FurryButton = Groupbox1:CreateButton("Neko", function()
+local ExamoleButton = Groupbox1:CreateButton("Neko", function()
 loadstring(game:HttpGet("https://paste.ee/d/6bCwm/0"))()
 end)
 
-local ServerAdminButton = Groupbox1:CreateButton("Server Admin", function()
+local ExampleButton = Groupbox1:CreateButton("Server Admin", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ONEReverseCard/My-Scripts/main/Netless%20Server%20Admin.md"))()
 end)
 
-local JoyButton = Groupbox1:CreateButton(":Joy:", function()
+local ExampleButton = Groupbox1:CreateButton(":Joy:", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/LEAQuKj0"))()
 end)
 
-local :3Button = Groupbox1:CreateButton("Smug", function()
+local ExampleButton = Groupbox1:CreateButton("Smug", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/ZuKy7HFF"))()
 end)
 
-local UltimateMemeDanceButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
+local ExampleButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/0QfjMKrF"))()
 end)
 
-local ChillButton = Groupbox1:CreateButton("Chill", function()
+local ExampleButton = Groupbox1:CreateButton("Chill", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/chille%20fe"))()
 end)
 
