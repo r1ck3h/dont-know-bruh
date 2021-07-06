@@ -203,6 +203,6 @@ local ExampleButton2 = Groupbox2:CreateButton("Anti Kill", function()
 game:GetService'Players'.LocalPlayer.Character['Right Arm']:Destroy()
 end)
 
-local ExampleButton2 = Groupbox2:CreateButton("Headless(Among Us only also wait 3 seconds to use this)", function()
+local ExampleButton2 = Groupbox2:CreateButton("Headless(Among Us only also wait 3 sec))", function()
 game:GetService'Players'.LocalPlayer.Character['Head']:Destroy()
 end)
