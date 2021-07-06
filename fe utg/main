@@ -44,26 +44,25 @@ loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know
 end)
 
 -- Groupbox 2
-local antiskidButton2 = Groupbox2:CreateButton("Anti Fling", function()
+local ExampleButton2 = Groupbox2:CreateButton("Anti Fling", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/anti%20fling"))()
 end)
 
-local NetlessButton2 = Groupbox2:CreateButton("Netless", function()
+local ExampleButton2 = Groupbox2:CreateButton("Netless", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/netless"))()
 end)
 
-local AntiReportButton2 = Groupbox2:CreateButton("Anti Report", function()
+local ExampleButton2 = Groupbox2:CreateButton("Anti Report", function()
 setfflag("AbuseReportScreenshotPercentage", 0)
 setfflag("DFFlagAbuseReportScreenshot", "False")
-print("Anti-Report loaded")
 end)
 
-local RejoinButton2 = Groupbox2:CreateButton("Rejoin", function()
+local ExampleButton2 = Groupbox2:CreateButton("Rejoin", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/rejoin"))()
 end)
 
 
-local RemoveMeshButton2 = Groupbox2:CreateButton("Remove Mesh", function()
+local ExampleButton2 = Groupbox2:CreateButton("Remove Mesh", function()
     for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
         if v:IsA("Accessory") then
             if v.Handle:FindFirstChild("Mesh") then
@@ -200,7 +199,7 @@ local hash; do
 end
 
 
-local AntiKillButton2 = Groupbox2:CreateButton("Anti Kill", function()
+local ExampleButton2 = Groupbox2:CreateButton("Anti Kill", function()
 game:GetService'Players'.LocalPlayer.Character['Right Arm']:Destroy()
 end)
 
