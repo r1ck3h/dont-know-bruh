@@ -13,42 +13,34 @@ local Groupbox2 = Tab1:CreateGroupbox("Settings", "Right")
 -- Groupbox 1
 local GaleFighterButton = Groupbox1:CreateButton("Gale Fighter", function()
 loadstring(game:HttpGet(("https://pastebin.com/raw/PjJNLaFa"), true))()
-print('Gale Fighter Excuted')
 end)
 
 local SUSButton = Groupbox1:CreateButton("Among Us", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/JXUMavf3", true))()
-print('Sussy Baka')
 end)
 
 local FurryButton = Groupbox1:CreateButton("Neko", function()
 loadstring(game:HttpGet("https://paste.ee/d/6bCwm/0"))()
-print('ew a furry')
 end)
 
 local ServerAdminButton = Groupbox1:CreateButton("Server Admin", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ONEReverseCard/My-Scripts/main/Netless%20Server%20Admin.md"))()
-print('lol ur not a server admin ur a server skid')
 end)
 
 local JoyButton = Groupbox1:CreateButton(":Joy:", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/LEAQuKj0"))()
-print('Joy Executed')
 end)
 
 local :3Button = Groupbox1:CreateButton("Smug", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/ZuKy7HFF"))()
-print('Smug Executed')
 end)
 
 local UltimateMemeDanceButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/0QfjMKrF"))()
-print('memes for life')
 end)
 
 local ChillButton = Groupbox1:CreateButton("Chill", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/chille%20fe"))()
-print('chill for life')
 end)
 
 -- Groupbox 2
