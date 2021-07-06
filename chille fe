@@ -74,7 +74,7 @@ while wait(2) do
 end
 end)
 v.Shape = "Block"
-text.Text = "~»Chill Af«~"
+text.Text = "~>>Chill Af<<~"
 local Player = game:GetService("Players").LocalPlayer
 local Character = char
 local PlayerGui = Player.PlayerGui
@@ -465,21 +465,17 @@ mouse.KeyDown:connect(function(key)
 end)
 mouse.KeyDown:connect(function(key)
 	if key == "f" then
-		text.Text = "Guys why not just chill?"
+	game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Guys why not just chill?","All")
 		wait(1)
-		text.Text = "It's just the way life should be."
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("It's just the way life should be.","All")
 		wait(1)
-		text.Text = "Chill is life."
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Chill is for the best of all.","All")
 		wait(1)
-		text.Text = "Chill is love."
-		wait(1)
-		text.Text = "Chill is for the best."
-		wait(1)
-		text.Text = "Maybe if you were chill you wouldn't be a skid..."
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Maybe if you were chill you wouldn't be a skid...","All")
 		wait(3)
-		text.Text = "But some people cant handle the chill can they."
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("But some people cant handle the chill can they.","All")
 		wait(3)
-		text.Text = "Chill Af"
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("I'm Chill As God","All")
 	end
 end)
 mouse.KeyDown:connect(function(key)
@@ -790,10 +786,10 @@ if tonumber(ID_Box.Text) then
 	Chillmusic.SoundId='rbxassetid://'..tonumber(ID_Box.Text)
 	Chillmusic:Play()
 	currentsong = game:GetService("MarketplaceService"):GetProductInfo(tonumber(ID_Box.Text)).Name
-	text.Text = "~»Chill Af«~ Now Playing: "..currentsong
+	text.Text = "~>>Chill Af<<~ Now Playing: "..currentsong
 	Current_Song_Label.Text = "~»Current Song: "..currentsong.."«~"
 wait(4)
-text.Text = "~»Fell Apart AF«~"
+text.Text = "~>>Chill AF<<~"
 end
 end)
 local ischatting = false
@@ -810,20 +806,20 @@ end)
 
 Set_Text_Button.MouseButton1Down:Connect(function()
 
-	text.Text = "~»"..Tpos_Box_2.Text.."«~"
+	text.Text = "~>>"..Tpos_Box_2.Text.."<<~"
 end)
 
 Toggle_Chat_Button.MouseButton1Down:Connect(function()
 if ischatting == false then
 ischatting = true
-Chat_Toggle_Label.Text = "~»True«~"
+Chat_Toggle_Label.Text = "~>>True<<~"
 spawn(function()
 game.Players.LocalPlayer.Chatted:connect(function(msg)
 for i = 0, msg:len(), 1 do
-	text.Text = "~»"..msg:sub(0, i).."«~"
+	text.Text = "~>>"..msg:sub(0, i).."<<~"
 end
 wait(3)
-text.Text = "~»Fell Apart AF«~"
+text.Text = "~>>Chill AF<<~"
 end)
 end)
 else
