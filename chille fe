@@ -492,16 +492,16 @@ mouse.KeyDown:connect(function(key)
 end)
 mouse.KeyDown:connect(function(key)
 	if key == "b" then
-		text.Text = "Be back scrubs."
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Be right back.","All")
 		wait(1)
-		text.Text = "Afk nibba..."
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Afk...","All")
 	end
 end)
 mouse.KeyDown:connect(function(key)
 	if key == "n" then
-		text.Text = "K back you nubs's!"
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Back","All")
 		wait(1)
-		text.Text = "Chill Af"
+		game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("I'm Chill As God","All")
 	end
 end)
 m = Instance.new("ForceField", Character)
