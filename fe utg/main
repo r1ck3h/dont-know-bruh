@@ -44,6 +44,10 @@ local ExampleButton = Groupbox1:CreateButton("Chill", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/chille%20fe"))()
 end)
 
+local ExampleButton = Groupbox1:CreateButton("Sonic", function()
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/sonic"))()
+end)
+
 local ExampleButton = Groupbox1:CreateButton("RTX(Autumn)", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-autumn"))()
 end)
