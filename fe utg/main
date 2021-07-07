@@ -215,10 +215,10 @@ game:GetService'Players'.LocalPlayer.Character['Head']:Destroy()
 end)
 
 -- Groupbox 3
-local ExampleButton = Groupbox1:CreateButton("RTX(Autumn)", function()
+local ExampleButton = Groupbox3:CreateButton("RTX(Autumn)", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-autumn"))()
 end)
     
-local ExampleButton = Groupbox1:CreateButton("RTX(Summer)", function()
+local ExampleButton = Groupbox3:CreateButton("RTX(Summer)", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-summer"))()
 end)
