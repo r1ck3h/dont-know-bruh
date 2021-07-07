@@ -5,9 +5,12 @@ local Window, MainGUI = Library:CreateWindow("FE UTG")
 
 -- Tabs
 local Tab1 = Window:CreateTab("Main")
+local Tab2 = Window:CreateTab("Visuals")
 
 local Groupbox1 = Tab1:CreateGroupbox("FE's", "Left")
 local Groupbox2 = Tab1:CreateGroupbox("Setting's", "Right")
+
+local Groupbox3 = Tab2:CreateGroupbox("Main Visuals", "Left")
 
 
 -- Groupbox 1
@@ -46,14 +49,6 @@ end)
 
 local ExampleButton = Groupbox1:CreateButton("Sonic", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/sonic"))()
-end)
-
-local ExampleButton = Groupbox1:CreateButton("RTX(Autumn)", function()
-loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-autumn"))()
-end)
-
-local ExampleButton = Groupbox1:CreateButton("RTX(Summer)", function()
-loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-summer"))()
 end)
 
 -- Groupbox 2
@@ -217,4 +212,13 @@ end)
 
 local ExampleButton2 = Groupbox2:CreateButton("Headless(Among Us only also wait 3 sec))", function()
 game:GetService'Players'.LocalPlayer.Character['Head']:Destroy()
+end)
+
+-- Groupbox 3
+local ExampleButton = Groupbox1:CreateButton("RTX(Autumn)", function()
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-autumn"))()
+end)
+    
+local ExampleButton = Groupbox1:CreateButton("RTX(Summer)", function()
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-summer"))()
 end)
