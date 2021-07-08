@@ -221,3 +221,7 @@ end)
 local ExampleButton3 = Groupbox3:CreateButton("RTX(Summer)", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-summer"))()
 end)
+
+local ExampleButton3 = Groupbox3:CreateButton("HD Graphics", function()
+loadstring(game:HttpGetAsync("https://github.com/r1ck3h/dont-know-bruh/blob/main/fe%20utg/hd"))()
+end)
