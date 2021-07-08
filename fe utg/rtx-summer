@@ -1,4 +1,4 @@
-getgenv().mode = "Autumn" -- Choose from Summer and Autumn (Summer looks bad ngl)
+getgenv().mode = "Summer" -- Choose from Summer and Autumn (Summer looks bad ngl)
 
 
 
