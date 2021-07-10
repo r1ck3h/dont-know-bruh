@@ -1,3 +1,4 @@
+print("made by no one lol")
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/WetCheezit/Bracket-V2/main/src.lua"))()
 
 -- Window
@@ -41,7 +42,6 @@ local ExampleButton = Groupbox1:CreateButton("Ultimate Meme Dance", function()
 loadstring(game:HttpGetAsync("https://pastebin.com/raw/0QfjMKrF"))()
 end)
 
-
 local ExampleButton = Groupbox1:CreateButton("Chill", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/chille%20fe"))()
 end)
@@ -49,6 +49,11 @@ end)
 local ExampleButton = Groupbox1:CreateButton("Sonic", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/sonic"))()
 end)
+
+local ExampleButton = Groupbox1:CreateButton("Emoji(cant print the emoji list)", function()
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/emoji"))()
+end)
+
 
 -- Groupbox 2
 local ExampleButton2 = Groupbox2:CreateButton("Anti Fling", function()
@@ -222,23 +227,23 @@ local ExampleButton3 = Groupbox3:CreateButton("RTX(Summer)", function()
 loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/fe%20utg/rtx-summer"))()
 end)
 
-local ExampleButton3 = Groupbox3:CreateButton("HD Graphics", function()
+local ExampleButton3 = Groupbox3:CreateButton("HD Graphics(use if u want because im still doing something in it)", function()
 _G.BlurSize = 3
 
-_G.ColorCorrectionBrightness = 0.03
-_G.ColorCorrectionContrast = 0.3
-_G.ColorCorrectionSaturation = 0.01
-_G.ColorCorrectionTintColor = Color3.fromRGB(244,244,244)
+_G.ColorCorrectionBrightness = 0.06
+_G.ColorCorrectionContrast = 0.5
+_G.ColorCorrectionSaturation = 0.03
+_G.ColorCorrectionTintColor = Color3.fromRGB(255,255,255)
 
-_G.SunRaysIntensity = 0.2
-_G.SunRaysSpread = 1
+_G.SunRaysIntensity = 0.35
+_G.SunRaysSpread = 1.75
 
 -- Lighting settings:
 _G.GlobalShadows = true
-_G.Brightness = 0.9
-_G.GeographicLatitude = 350
-_G.TimeOfDay = 17
-_G.ExposureCompensation = 0.03
+_G.Brightness = 1.5
+_G.GeographicLatitude = 360
+_G.TimeOfDay = 12
+_G.ExposureCompensation = 0.09
 
 
 spawn(function()
