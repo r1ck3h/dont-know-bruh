@@ -1,4 +1,7 @@
-print("made by no one lol")
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+	Title = "Made By";
+	Text = "No One LOL";
+Duration = 5;
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/WetCheezit/Bracket-V2/main/src.lua"))()
 
 -- Window
