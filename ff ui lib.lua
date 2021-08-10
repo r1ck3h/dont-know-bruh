@@ -1653,6 +1653,7 @@ function library:Init()
 		self.base.Name = tostring(math.random())
 		self.base.Parent = game:GetService"CoreGui"
 	end
+end
 
 
 inputService.InputBegan:connect(function(input)
@@ -1669,6 +1670,5 @@ inputService.InputBegan:connect(function(input)
 		end
 	end
 end)
-
 
 return library
