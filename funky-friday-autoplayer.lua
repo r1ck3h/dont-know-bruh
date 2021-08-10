@@ -32,10 +32,8 @@ local task = task or getrenv().task;
 local fastWait, fastSpawn = task.wait, task.spawn;
 
 local fireSignal, rollChance do
-
     local set_identity = (type(syn) == 'table' and syn.set_thread_identity) or setidentity or setthreadcontext
     function fireSignal(target, signal, ...)    
-
         set_identity(2) 
         for _, signal in next, getconnections(signal) do
             if type(signal.Function) == 'function' and islclosure(signal.Function) then
@@ -55,7 +53,7 @@ local fireSignal, rollChance do
             if (library.flags.okayHeld) then return 'Ok' end
             if (library.flags.missHeld) then return 'Bad' end
 
-            return 'Bad' 
+            return 'Bad'
         end
 
         local chances = {
@@ -89,7 +87,7 @@ local fireSignal, rollChance do
             end
         end
 
-        return 'Sick'
+        return 'Sick' 
     end
 end
 
