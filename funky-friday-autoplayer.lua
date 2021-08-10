@@ -177,6 +177,16 @@ local window = library:CreateWindow('Funky Friday') do
         folder:AddBind({ text = 'Ok', flag = 'okBind', key = Enum.KeyCode.Three, hold = true, callback = function(val) library.flags.okayHeld = (not val) end, })
         folder:AddBind({ text = 'Bad', flag = 'badBind', key = Enum.KeyCode.Four, hold = true, callback = function(val) library.flags.missHeld = (not val) end, })
     end
+
+    local folder = window:AddFolder('Credits') do
+        folder:AddLabel({ text = 'Credits' })
+        folder:AddLabel({ text = 'No One lol - UI library' })
+        folder:AddLabel({ text = 'wally - Script' })
+    end
+
+    window:AddLabel({ text = 'Version 1.3' })
+    window:AddLabel({ text = 'Updated 8/2/21' })
+    window:AddBind({ text = 'Menu toggle', key = Enum.KeyCode.Delete, callback = function() library:Close() end })
 end
 
 library:Init()
