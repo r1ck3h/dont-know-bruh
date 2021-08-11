@@ -1663,12 +1663,6 @@ function library:Init()
 	end
 end
 
-function library:Close()
-	self.open = not self.open
-	self.cursor.Visible = self.open
-	if self.activePopup then
-		self.activePopup:Close()
-	end
 	for _, window in next, self.windows do
 		if window.main then
 			window.main.Visible = self.open
