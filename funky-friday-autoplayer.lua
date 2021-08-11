@@ -1,4 +1,4 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/ff%20ui%20lib.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/r1ck3h/dont-know-bruh/main/uwuware-ui.lua"))()
 
 local framework, scrollHandler
 while true do
