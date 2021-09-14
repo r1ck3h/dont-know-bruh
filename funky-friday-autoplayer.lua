@@ -32,8 +32,11 @@ local task = task or getrenv().task;
 local fastWait, fastSpawn = task.wait, task.spawn;
 
 local fireSignal, rollChance do
+    -- updated for script-ware or whatever
+    -- attempted to update for krnl 
     local set_identity = (type(syn) == 'table' and syn.set_thread_identity) or setidentity or setthreadcontext
     function fireSignal(target, signal, ...)    
+        -- getconnections with InputBegan / InputEnded does not work without setting Synapse to the game's context level
         set_identity(2) 
         for _, signal in next, getconnections(signal) do
             if type(signal.Function) == 'function' and islclosure(signal.Function) then
@@ -46,6 +49,9 @@ local fireSignal, rollChance do
         set_identity(7)
     end
 
+    -- uses a weighted random system
+    -- its a bit scuffed rn but it works good enough
+
     function rollChance()
         if (library.flags.autoPlayerMode == 'Manual') then
             if (library.flags.sickHeld) then return 'Sick' end
@@ -53,7 +59,7 @@ local fireSignal, rollChance do
             if (library.flags.okayHeld) then return 'Ok' end
             if (library.flags.missHeld) then return 'Bad' end
 
-            return 'Bad'
+            return 'Bad' -- incase if it cant find one
         end
 
         local chances = {
@@ -61,6 +67,7 @@ local fireSignal, rollChance do
             { type = 'Good', value = library.flags.goodChance },
             { type = 'Ok', value = library.flags.okChance },
             { type = 'Bad', value = library.flags.badChance },
+            { type = 'Miss' , value = library.flags.missChance },
         }
         
         table.sort(chances, function(a, b) 
@@ -73,7 +80,10 @@ local fireSignal, rollChance do
         end
 
         if sum == 0 then
-            return chances[random:NextInteger(1, 4)].type 
+            -- forgot to change this before?
+            -- fixed 6/5/21
+
+            return chances[random:NextInteger(1, #chances)].type 
         end
 
         local initialWeight = random:NextInteger(0, sum)
@@ -87,18 +97,21 @@ local fireSignal, rollChance do
             end
         end
 
-        return 'Sick' 
+        return 'Sick' -- just incase it fails?
     end
 end
 
 local map = { [0] = 'Left', [1] = 'Down', [2] = 'Up', [3] = 'Right', }
 local keys = { Up = Enum.KeyCode.Up; Down = Enum.KeyCode.Down; Left = Enum.KeyCode.Left; Right = Enum.KeyCode.Right; }
 
+-- they are "weird" because they are in the middle of their Upper & Lower ranges 
+-- should hopefully make them more precise!
 local chanceValues = {
     Sick = 96,
     Good = 92,
     Ok = 87,
-    Bad = 75
+    Bad = 75,
+    Miss = 0
 }
 
 local hitChances = {}
@@ -144,9 +157,12 @@ runService:BindToRenderStep(shared._id, 1, function()
                         fireSignal(scrollHandler, userInputService.InputBegan, { KeyCode = keys[position], UserInputType = Enum.UserInputType.Keyboard }, false)
 
                         if arrow.Data.Length > 0 then
-                            fastWait(arrow.Data.Length)
+                            -- wait depending on the arrows length so the animation can play
+                            fastWait(arrow.Data.Length + (random:NextInteger(0, library.flags.autoDelay) / 1000))
                         else
-                            fastWait(0.05) 
+                            -- 0.1 seems to make it miss more, this should be fine enough?
+                            -- nah forget it. get this; u now have to choose ur own release delay lmao
+                            fastWait(library.flags.autoDelay / 1000) 
                         end
 
                         fireSignal(scrollHandler, userInputService.InputEnded, { KeyCode = keys[position], UserInputType = Enum.UserInputType.Keyboard }, false)
@@ -159,17 +175,25 @@ runService:BindToRenderStep(shared._id, 1, function()
 end)
 
 local window = library:CreateWindow('Funky Friday') do
-    local folder = window:AddFolder('Main') do
-        folder:AddToggle({ text = 'Autoplayer', flag = 'autoPlayer' })
+    local folder = window:AddFolder('Autoplayer') do
+        local toggle = folder:AddToggle({ text = 'Autoplayer', flag = 'autoPlayer' })
+
+        -- Fixed to use toggle:SetState
+        folder:AddBind({ text = 'Autoplayer toggle', flag = 'autoPlayerToggle', key = Enum.KeyCode.End, callback = function() 
+            toggle:SetState(not toggle.state)
+        end })
+
         folder:AddList({ text = 'Autoplayer mode', flag = 'autoPlayerMode', values = { 'Chances', 'Manual' } })
 
         folder:AddSlider({ text = 'Sick %', flag = 'sickChance', min = 0, max = 100, value = 100 })
         folder:AddSlider({ text = 'Good %', flag = 'goodChance', min = 0, max = 100, value = 0 })
         folder:AddSlider({ text = 'Ok %', flag = 'okChance', min = 0, max = 100, value = 0 })
         folder:AddSlider({ text = 'Bad %', flag = 'badChance', min = 0, max = 100, value = 0 })
+        folder:AddSlider({ text = 'Miss %', flag = 'missChance', min = 0, max = 100, value = 0 })
+        folder:AddSlider({ text = 'Release delay (ms)', flag = 'autoDelay', min = 0, max = 350, value = 50 })
     end
 
-    local folder = window:AddFolder('Keybinds') do
+    local folder = window:AddFolder('Manual keybinds') do
         folder:AddBind({ text = 'Sick', flag = 'sickBind', key = Enum.KeyCode.One, hold = true, callback = function(val) library.flags.sickHeld = (not val) end, })
         folder:AddBind({ text = 'Good', flag = 'goodBind', key = Enum.KeyCode.Two, hold = true, callback = function(val) library.flags.goodHeld = (not val) end, })
         folder:AddBind({ text = 'Ok', flag = 'okBind', key = Enum.KeyCode.Three, hold = true, callback = function(val) library.flags.okayHeld = (not val) end, })
@@ -177,13 +201,13 @@ local window = library:CreateWindow('Funky Friday') do
     end
 
     local folder = window:AddFolder('Credits') do
-        folder:AddLabel({ text = 'Credits' })
-        folder:AddLabel({ text = 'No One lol - UI library' })
+        folder:AddLabel({ text = 'Jan - UI library' })
         folder:AddLabel({ text = 'wally - Script' })
+        folder:AddLabel({ text = 'Sezei - Contributor'})
     end
 
-    window:AddLabel({ text = 'Version 1.3' })
-    window:AddLabel({ text = 'Updated 8/2/21' })
+    window:AddLabel({ text = 'Version 1.4a' })
+    window:AddLabel({ text = 'Updated 8/20/21' })
     window:AddBind({ text = 'Menu toggle', key = Enum.KeyCode.Delete, callback = function() library:Close() end })
 end
 
